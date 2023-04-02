@@ -40,6 +40,6 @@ void MainWindow::setupWebView()
     page->scripts().insert(mod);
 
     webView->setPage(page);
-    webView->load(QUrl("https://platform.openai.com/playground?mode=chat"));
+    webView->load(QUrl("https://platform.openai.com/playground?mode=chat&model=gpt-4"));
     webView->show();
 }
