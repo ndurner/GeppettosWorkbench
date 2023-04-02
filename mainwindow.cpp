@@ -4,6 +4,8 @@
 
 #include <QWebEngineView>
 #include <QWebEngineProfile>
+#include <QWebEngineScriptCollection>
+#include <QLoggingCategory>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -31,6 +33,12 @@ void MainWindow::setupWebView()
 
     QWebEngineProfile *profile = new QWebEngineProfile(qApp->applicationName());
     QWebEnginePage *page = new QWebEnginePage(profile);
+
+    QWebEngineScript mod;
+    mod.setInjectionPoint(QWebEngineScript::InjectionPoint::DocumentReady);
+    mod.setSourceUrl(QUrl("qrc:///ui_mod.js"));
+    page->scripts().insert(mod);
+
     webView->setPage(page);
     webView->load(QUrl("https://platform.openai.com/playground"));
     webView->show();
