@@ -3,7 +3,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-
+#include <QWebEngineView>
 
 
 QT_BEGIN_NAMESPACE
@@ -21,6 +21,8 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    QWebEngineView *webView;
+    void setupWebView();
 };
 
 #endif // MAINWINDOW_H

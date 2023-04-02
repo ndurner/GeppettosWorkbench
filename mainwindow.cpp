@@ -3,6 +3,7 @@
 #include "ui_mainwindow.h"
 
 #include <QWebEngineView>
+#include <QWebEngineProfile>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -10,15 +11,8 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    connect(ui->webView, &QWebEngineView::loadFinished, [](bool ok) {
-        qDebug() << "load finished" << ok;
-    });
-    connect(ui->webView, &QWebEngineView::loadStarted, []() {
-        qDebug() << "loading...";
-    });
-
-    ui->webView->show();
-    ui->webView->load(QUrl("https://platform.openai.com/playground"));
+    webView = ui->webView;
+    setupWebView();
 }
 
 MainWindow::~MainWindow()
@@ -26,4 +20,18 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::setupWebView()
+{
+    connect(ui->webView, &QWebEngineView::loadFinished, [](bool ok) {
+        qDebug() << "load finished" << ok;
+    });
+    connect(ui->webView, &QWebEngineView::loadStarted, []() {
+        qDebug() << "loading...";
+    });
 
+    QWebEngineProfile *profile = new QWebEngineProfile(qApp->applicationName());
+    QWebEnginePage *page = new QWebEnginePage(profile);
+    webView->setPage(page);
+    webView->load(QUrl("https://platform.openai.com/playground"));
+    webView->show();
+}
