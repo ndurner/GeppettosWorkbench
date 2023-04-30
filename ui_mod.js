@@ -39,7 +39,7 @@ var observer = new MutationObserver(function(mutations) {
             if (instr !== null) {
                 var inp = instr.querySelector('textarea');
                 if (inp !== null) {
-                    inp.textContent = 'You are a helpful assistant, giving factual and faithful answers. Say idk if unsure';
+                    inp.textContent = 'You are a helpful assistant. Answer faithfully and factually correct. Respond with "I don\'t know" if you are unsure. Answer user inquiry in the context of the conversation that preceded it.';
 
                     const inputEvent = new Event('input', { bubbles: true, cancelable: true });
                     inp.dispatchEvent(inputEvent);
