@@ -45,6 +45,12 @@ var observer = new MutationObserver(function(mutations) {
                     inp.dispatchEvent(inputEvent);
                 }
             }
+
+            // page title
+            const pgTitle = addedElem.querySelector('.pg-page-title');
+            if (pgTitle !== null) {
+                pgTitle.innerText += " (Nils' Version)";
+            }
         }
     }
 });

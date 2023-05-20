@@ -15,6 +15,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     webView = ui->webView;
     setupWebView();
+
+    ui->statusbar->showMessage("© 2023 Nils Durner. This software is released under AGPLv3.");
 }
 
 MainWindow::~MainWindow()
