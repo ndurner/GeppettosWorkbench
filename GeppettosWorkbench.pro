@@ -31,9 +31,6 @@ OTHER_FILES += \
 RESOURCES += \
     res.qrc
 
-# Add a custom bundling configuration option
-CONFIG += bundle
-
 # Check if the target platform is Windows and the bundling option is enabled
 win32:CONFIG(bundle, bundle|!bundle) {
     CONFIG(debug, debug|release) {
@@ -46,7 +43,7 @@ win32:CONFIG(bundle, bundle|!bundle) {
     BUNDLE_DIR = $$OUT_PWD/bundle
 
     # Create the bundle directory if it doesn't exist
-    !exists($$BUNDLE_DIR) {
+    !exists($$shell_path($$BUNDLE_DIR)) {
         QMAKE_POST_LINK += $$QMAKE_MKDIR $$shell_path($$BUNDLE_DIR)$$escape_expand(\\n\\t)
     }
 
